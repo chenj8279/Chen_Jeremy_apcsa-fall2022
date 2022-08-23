@@ -1,10 +1,10 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
-//Date -
-//Class -
-//Lab  -
+//Name - Jeremy Chen
+//Date - 8/23/22
+//Class - Mauro, P2
+//Lab  - Distance Lab
 
 import java.util.Scanner; 
 import static java.lang.System.*;
@@ -14,13 +14,22 @@ public class DistanceRunner
 {
 	public static void main( String[] args )
 	{
-		int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+		Scanner keyboard = new Scanner(in);
+		
+		out.print("Enter X1 :: ");
+		int x1 = keyboard.nextInt();
+		out.print("Enter Y1 :: ");
+		int y1 = keyboard.nextInt();
+		out.print("Enter X2 :: ");
+		int x2 = keyboard.nextInt();
+		out.print("Enter Y2 :: ");
+		int y2 = keyboard.nextInt();
+		
 		//add test cases	
-		Distance test1 = new Distance(x1, y1, x2, y2);
-		test1.print();
+		Distance test1 = new Distance();
 		test1.setCoordinates(x1, y1, x2, y2);
-		test1.print();
-		test1.toString();
-			
+		test1.calcDistance();
+		out.println(test1);
+		
 	}
 }

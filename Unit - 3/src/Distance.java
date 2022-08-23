@@ -1,10 +1,10 @@
 //(c) A+ Computer Science 
 //www.apluscompsci.com
 
-//Name -
-//Date -
-//Class -
-//Lab  -
+//Name - Jeremy Chen
+//Date - 8/23/22
+//Class - Mauro, P2
+//Lab  - Distance Lab
 
 import java.util.Scanner; 
 import static java.lang.System.*;
@@ -22,11 +22,12 @@ public class Distance
 
 	public Distance(int x1, int y1, int x2, int y2)
 	{
-		
+		setCoordinates(x1,y1,x2,y2);
 	}
 
 	public void setCoordinates(int x1, int y1, int x2, int y2)
 	{
+		
 		xOne = x1;
 		yOne = y1;
 		xTwo = x2;
@@ -35,7 +36,9 @@ public class Distance
 
 	public void calcDistance()
 	{
-		
+		double xPow = Math.pow(((double)xOne-xTwo),2);
+		double yPow = Math.pow(((double)yOne-yTwo),2);
+		distance = Math.sqrt((xPow+yPow));
 	}
 	
 	public double getDistance()
@@ -45,16 +48,6 @@ public class Distance
 	
 	public void print()
 	{
-		Scanner keyboard = new Scanner(in);
-		
-		out.print("Enter X1 :: ");
-		int x1 = keyboard.nextInt();
-		out.print("Enter Y1 :: ");
-		int y1 = keyboard.nextInt();
-		out.print("Enter X2 :: ");
-		int x2 = keyboard.nextInt();
-		out.print("Enter Y2 :: ");
-		int y2 = keyboard.nextInt();
 		
 	}
 	
@@ -62,6 +55,6 @@ public class Distance
 
 	public String toString()
 	{
-		return xOne + "" + yOne + "" + xTwo + "" + yTwo;
+		return "distance == " + String.format("%.3f", distance);
 	}
 }

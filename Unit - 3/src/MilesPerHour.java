@@ -1,10 +1,10 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
 
-//Name -
-//Date -
-//Class -
-//Lab  -
+//Name - Jeremy Chen
+//Date - 8/23/22
+//Class - Mauro, P2
+//Lab  - MilesPerHour Lab
 
 import java.util.Scanner; 
 import static java.lang.System.*;
@@ -23,24 +23,14 @@ public class MilesPerHour
 
 	public MilesPerHour(int dist, int hrs, int mins)
 	{
+		
+	}
+
+	public void setNums(int dist, int hrs, int mins)
+	{
 		distance = dist;
 		hours = hrs;
 		minutes = mins;
-	}
-
-	public void setNums()
-	{
-		Scanner keyboard = new Scanner(in);
-
-		out.print("Enter the distance :: ");
-		int dist = keyboard.nextInt();
-
-		out.print("Enter the hours :: ");
-		int hrs = keyboard.nextInt();
-
-		out.print("Enter the minutes :: ");
-		int mins = keyboard.nextInt();
-		
 	}
 
 	public void calcMPH()
@@ -51,7 +41,7 @@ public class MilesPerHour
 
 	public void print()
 	{
-		out.println("" + distance + " miles in " + hours + " hours and " + minutes + " minutes = " + (String.format("%.0f", mph)) + " MPH.");
+		
 	}
 	
 	//create a print or toString or both
