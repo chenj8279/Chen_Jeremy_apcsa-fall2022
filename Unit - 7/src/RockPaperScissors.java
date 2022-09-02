@@ -27,7 +27,8 @@ public class RockPaperScissors
 	}
 	
 	public void setComp() {
-		int ranNum = (int)Math.floor((int)Math.random()*3);
+		int ranNum = (int)Math.floor(Math.random()*3);
+		//get ride of math.floor
 		switch (ranNum){
 			case 0: compChoice = "R";
 			case 1 : compChoice = "P";
