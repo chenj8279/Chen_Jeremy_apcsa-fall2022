@@ -6,7 +6,8 @@ import static java.lang.System.*;
 
 public class Triples
 {
-   private int number;
+	private String output = "";
+	private int number;
 
 	public Triples()
 	{
@@ -16,6 +17,7 @@ public class Triples
 	public Triples(int num)
 	{
 		setNum(num);
+		triSides();
 	}
 
 	public void setNum(int num)
@@ -24,8 +26,8 @@ public class Triples
 	}
 	
 	public void triSides (){
+		
 		int max = 0;
-		String output = "";
 		for(int a = 1; a<number; a++) {
 			for(int b = 1; b<number; b++) {
 				for(int c = 1; c<number; c++) {
@@ -45,14 +47,14 @@ public class Triples
 		int max = 0;
 		int mini = Math.min(a, b);
 		mini = Math.min(mini, c);
-		int modA = 1;
-		int modB = 1;
-		int modC = 1;
+		double modA = 0.0;
+		double modB = 0.0;
+		double modC = 0.0;
 
 			for(int i = 0; i < mini/2; i++) {
-				modA = a % i;
-				modB = b % i;
-				modC = c % i;
+				modA = (double)a % i;
+				modB = (double)b % i;
+				modC = (double)c % i;
 				if(modB == 0 && modC == 0 && modA == 0 && i > 1) {
 					max = i;
 				}
@@ -63,8 +65,6 @@ public class Triples
 
 	public String toString()
 	{
-		String output="";
-
 		return output+"\n";
 	}
 }
