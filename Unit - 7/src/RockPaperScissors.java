@@ -64,7 +64,7 @@ public class RockPaperScissors
 		if((playChoice.equals("R")||compChoice.equals("R")) && ((compChoice.equals("P")||playChoice.equals("P")))) {
 			outcome = "<<paper covers rock>>";
 		}
-		if((playChoice.equals("P")||compChoice.equals("P")) && ((compChoice.equals("S")||playChoice.equals("S")))) {
+		else if((playChoice.equals("P")||compChoice.equals("P")) && ((compChoice.equals("S")||playChoice.equals("S")))) {
 			outcome = "<<scissors cuts paper>>";
 		}
 		else if((playChoice.equals("S")||compChoice.equals("S")) && ((compChoice.equals("R")||playChoice.equals("R")))){
