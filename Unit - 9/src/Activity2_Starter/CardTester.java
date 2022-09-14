@@ -1,3 +1,5 @@
+package Activity2_Starter;
+
 /**
  * This is a class that tests the Card class.
  */
