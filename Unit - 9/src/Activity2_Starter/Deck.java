@@ -36,7 +36,10 @@ public class Deck {
 	
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		
+		cards = new int[ranks.length * suits.length];
+		for(int i = 0; i < cards.length; i++) {
+			cards[i] = values[i%values.length];
+		}
 	}
 
 

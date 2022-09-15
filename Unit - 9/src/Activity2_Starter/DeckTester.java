@@ -11,6 +11,9 @@ public class DeckTester {
 	 */
 	public static void main(String[] args) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		
+		String ranks[] = {"Ace","Two","Three"};
+		String suits[] = {"diamond", "clubs"};
+		int[] pointValues = {1, 2, 3}; 
+		Deck d = new Deck(ranks, suits, pointValues);
 	}
 }
