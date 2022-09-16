@@ -36,9 +36,9 @@ public class Deck {
 	
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		cards = new int[ranks.length * suits.length];
-		for(int i = 0; i < cards.length; i++) {
-			cards[i] = values[i%values.length];
+		cards = new int[ranks.length*suits.length];
+		for(int i = 0; i<cards.length; i++) {
+			cards[i]=i;
 		}
 	}
 
@@ -47,6 +47,8 @@ public class Deck {
 	 * Determines if this deck is empty (no undealt cards).
 	 * @return true if this deck is empty, false otherwise.
 	 */
+	
+	
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 		if(size == 0) {
@@ -79,7 +81,10 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		
+		String cardAts = "";
+		for(int i = 0; i < cards.length; i++) {
+			cardAts += 
+		}
 	}
 
 	/**
