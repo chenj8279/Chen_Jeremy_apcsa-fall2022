@@ -14,7 +14,10 @@ public class Deck {
 	 * cards contains all the cards in the deck.
 	 */
 	
-	private int[] cards;
+	private String[] cards;
+	private String[] cardRanks;
+	private String[] cardSuits;
+	private int[] cardValues;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -23,6 +26,7 @@ public class Deck {
 	 */
 	
 	private int size;
+	//private int cardsDealt;
 
 
 	/**
@@ -36,10 +40,27 @@ public class Deck {
 	
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		cards = new int[ranks.length*suits.length];
+		
+		cardRanks = new String[ranks.length];
+		cardRanks = ranks.clone();
+		
+		cardSuits = new String[suits.length];
+		cardSuits = suits.clone();
+		
+		cardValues = new int[values.length];
+		cardValues = values.clone();
+		
+		cards = new String[cardRanks.length*cardSuits.length];
 		for(int i = 0; i<cards.length; i++) {
-			cards[i]=i;
+			//String suitcard = cardSuits[i/cardRanks.length];
+			//String rankcard = cardRanks[i%cardRanks.length];
+			//int valuecard = cardValues[i/cardSuits.length];
+			//String cardAts = "[" + rankcard + ", " + suitcard + ", " + valuecard + "]";
+			Card card = new Card(cardRanks[i%cardRanks.length], cardSuits[i/cardRanks.length], cardValues[i/cardSuits.length]);
+			String cardString = card;
+			cards[i] = cardString;
 		}
+		
 	}
 
 
@@ -63,6 +84,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		size = cardRanks.length * cardSuits.length - cardsDealt;
 		
 	}
 
@@ -81,10 +103,13 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		String cardAts = "";
-		for(int i = 0; i < cards.length; i++) {
-			cardAts += 
-		}
+		int cardsDealt = 0;
+		double cardNum = Math.floor(Math.random()*cards.length);
+		int cardNumDeal = (int)cardNum;
+		cardsDealt++;
+		
+		
+		
 	}
 
 	/**
