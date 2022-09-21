@@ -1,6 +1,9 @@
-package Activity2_Starter;
+package Activity3;
 
 import java.util.List;
+
+import Activity2_Starter.Card;
+
 import java.util.ArrayList;
 
 /**
@@ -58,6 +61,7 @@ public class Deck {
 			cards[i] = card;
 		}
 		size = cards.length;
+		shuffle();
 		
 	}
 
@@ -91,6 +95,13 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		int unshuffled = cards.length;
+		while(unshuffled > 0) {
+			int ranNum = (int) Math.floor(Math.random()*unshuffled);
+			Card temp = cards[ranNum];
+			cards[ranNum] = cards[unshuffled];
+			cards[unshuffled]=temp;
+		}
 	}
 
 	/**

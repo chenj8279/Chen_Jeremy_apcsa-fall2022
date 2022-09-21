@@ -1,4 +1,6 @@
-package Activity2_Starter;
+package Activity3;
+
+import Activity2_Starter.Deck;
 
 /**
  * This is a class that tests the Deck class.
