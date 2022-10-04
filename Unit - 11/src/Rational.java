@@ -7,25 +7,32 @@ import static java.lang.System.*;
 class Rational implements Comparable<Rational>
 {
 	//add two instance variables
-	private int den = 0;
-	private int num = 0;
+	private int den;
+	private int num;
 
 	//write two constructors
-	public Rational(int num1, int num2) {
-		setRational(num1, num2);
+	public Rational() {
+		this(0, 0);
+	}
+	
+	public Rational(int num, int den) {
+		setRational(num, den);
 	}
 	
 	//write a setRational method
-	public void setRational(int num1, int num2) {
-		setNumDen(num1, num2);
-		String result = "" + num1 +"/"+ num2;
+	public void setRational(int num, int den) {
+		setNum(num);
+		setDen(den);
 	}
 	
 	
 	//write  a set method for numerator and denominator
-	public void setNumDen(int num1, int num2) {
-		num = num1;
-		den = num2;
+	public void setNum(int num) {
+		this.num = num;
+	}
+	
+	public void setDen(int den) {
+		this.den = den;
 	}
 	
 	
@@ -35,7 +42,7 @@ class Rational implements Comparable<Rational>
 		//new numerator = (num1 * den2 + num2 * den1)
 		//new denominator = (den1 * den2)
 		
-		//int newNum = ;
+		//other.den
 		
 		
 		reduce();
