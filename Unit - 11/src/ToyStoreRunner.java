@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Jeremy Chen
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -11,6 +11,8 @@ public class ToyStoreRunner
 {
 	public static void main( String args[] )
 	{
-		
+		ToyStore test = new ToyStore();
+		test.loadToys("sorry bat sorry sorry sorry train train teddy teddy ball ball");
+		out.print(test);
 	}
 }

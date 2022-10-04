@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Jeremy Chen
 
 import java.util.Scanner;
 import java.util.List;
@@ -16,23 +16,20 @@ public class ToyStore
 	{
 		
 	}
-
+	
 	public void loadToys( String toys )
 	{
 		toyList = new ArrayList<Toy>();
-		String tys[] = toys.split(null);
+		String tys[] = toys.split(" ");
+		
 		for(int i = 0; i < tys.length; i++) {
-			out.println(tys[i]);
-			for(int j = 0; j < toyList.size(); j++) {
-				Toy temp1 = toyList.get(j);
-				Toy temp2 = toyList.get(i);
-				if(temp1.getName().equals(temp2.getName())) {
-					temp1.setCount(temp1.getCount());
-				}
-				else if (j == toyList.size()-1) {
-					toyList.add(new Toy(tys[i]));
-				}
+			if(getThatToy(tys[i]) == null) {
+				toyList.add(new Toy(tys[i]));
 			}
+			else {
+				getThatToy(tys[i]).setCount(getThatToy(tys[i]).getCount());
+			}
+			
 		}
 	}
   
@@ -50,7 +47,7 @@ public class ToyStore
   	public String getMostFrequentToy()
   	{
   		sortToysByCount();
-  		return "" + toyList.get(0);
+  		return "" + toyList.get(0).getName();
   	}  
   
   	public void sortToysByCount()
@@ -62,17 +59,22 @@ public class ToyStore
   		}
   		Collections.sort(tempC);
   		Collections.reverse(tempC);
+  		
+  		Toy temp;
   		for(int i = 0; i < toyList.size(); i++) {
-  			for(int j = 0; j != toyList.get(i).getCount(); j++) {
-  				if(toyList.get(i).getCount() == tempC.get(j)) {
-  					
-  				}
+  			int j = i;
+  			while(tempC.get(i) != toyList.get(j).getCount()) {
+  				j++;
   			}
+  			temp = toyList.get(i);
+  			toyList.set(i,toyList.get(j));
+  			toyList.set(j, temp);
   		}
-  	}  
-  	  
+  	}
+  	 
 	public String toString()
 	{
-	   return "";
+		sortToysByCount();
+		return "" + toyList + "\n" + "max == " + getMostFrequentToy();
 	}
 }
