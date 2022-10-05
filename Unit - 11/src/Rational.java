@@ -42,55 +42,62 @@ class Rational implements Comparable<Rational>
 		//new numerator = (num1 * den2 + num2 * den1)
 		//new denominator = (den1 * den2)
 		
-		//other.den
-		
+		this.num = (this.num * other.den + other.num * this.den);
+		this.den = this.den * other.den;
 		
 		reduce();
 	}
 
 	private void reduce()
 	{
-		
-		
-		
+		int gcd =gcd(num, den);
+		num = num/gcd;
+		den = den/gcd;
 	}
 
 	private int gcd(int numOne, int numTwo)
 	{
-
-
-		return 1;
+		int gcd = 1;
+		for(int i = 0; i < numOne/2; i++) {
+			if(numOne%i == 0 && numTwo%i == 0) {
+				gcd = i;
+			}
+		}
+		
+		return gcd;
 	}
-
+	
 	public Object clone ()
 	{
 		return "";
 	}
-
-
+	
 	//ACCESSORS
-
+	
 	//write get methods for numerator and denominator
+	public int getNum() {
+		return this.num;
+	}
 	
+	public int getDen() {
+		return this.den;
+	}
 	
-	public boolean equals( Object obj)
+	public boolean equals(Object obj)
 	{
-
 
 		return false;
 	}
 
 	public int compareTo(Rational other)
 	{
-
-
+		
 		return -1;
 	}
-
-
-
 	
 	//write  toString() method
-	
-	
+	public String toString() {
+		
+		return "";
+	}
 }
