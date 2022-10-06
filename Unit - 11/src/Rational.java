@@ -12,7 +12,7 @@ class Rational implements Comparable<Rational>
 
 	//write two constructors
 	public Rational() {
-		this(0, 0);
+		this(1, 1);
 	}
 	
 	public Rational(int num, int den) {
@@ -50,26 +50,35 @@ class Rational implements Comparable<Rational>
 
 	private void reduce()
 	{
-		int gcd =gcd(num, den);
-		num = num/gcd;
-		den = den/gcd;
+		int factor;
+		if(num>den) {
+			factor = gcd(num, den);
+		}
+		else if(den>num) {
+			factor = gcd(den, num);
+		}
+		else {
+			factor = 1;
+		}
+		num = num/factor;
+		den = den/factor;
 	}
 
 	private int gcd(int numOne, int numTwo)
 	{
-		int gcd = 1;
-		for(int i = 0; i < numOne/2; i++) {
-			if(numOne%i == 0 && numTwo%i == 0) {
-				gcd = i;
+		int factor = 1;
+		for(int i = numTwo/2; i> 0; i--) {
+			if(numTwo%i == 0 && numOne%i == 0) {
+				factor = i;
+				break;
 			}
 		}
-		
-		return gcd;
+		return factor;
 	}
 	
 	public Object clone ()
 	{
-		return "";
+		return new Rational(getNum(), getDen());
 	}
 	
 	//ACCESSORS
@@ -85,19 +94,30 @@ class Rational implements Comparable<Rational>
 	
 	public boolean equals(Object obj)
 	{
-
+		((Rational) obj).reduce();
+		this.reduce();
+		if(this == obj) {
+			return true;
+		}
 		return false;
 	}
 
 	public int compareTo(Rational other)
 	{
-		
+		double ofThis = this.num/this.den;
+		double ofOther = other.num/other.den;
+		if(ofThis > ofOther) {
+			return 1;
+		}
+		else if(ofThis == ofOther) {
+			return 0;
+		}
 		return -1;
 	}
 	
 	//write  toString() method
 	public String toString() {
 		
-		return "";
+		return "" + this.num + "/" + this.den;
 	}
 }
