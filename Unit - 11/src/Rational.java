@@ -49,15 +49,6 @@ class Rational implements Comparable<Rational>
 	private void reduce()
 	{
 		int factor = gcd(Math.max(getNum(), getDen()), Math.min(getNum(),getDen()));
-		/*if(getNum()>getDen()) {
-			factor = gcd(getNum(), getDen());
-		}
-		else if(getDen()>getNum()) {
-			factor = gcd(getDen(), getNum());
-		}
-		else {
-			factor = 1;
-		}*/
 		num = getNum()/factor;
 		den = getDen()/factor;
 	}
@@ -96,12 +87,6 @@ class Rational implements Comparable<Rational>
 		if(this.compareTo((Rational) obj) == 0) {
 			return true;
 		}
-		
-//		this.reduce();
-//		obj.reduce();
-//		if(this.getNum() == obj.getNum() && this.getDen() == obj.getDen()) {
-//			return true;
-//		}
 		return false;
 	}
 
@@ -118,16 +103,6 @@ class Rational implements Comparable<Rational>
 		else {
 			return 0;
 		}
-		//this.getNum()/this.getDen() > other.getNum()/other.getDen()
-		/*if(this.getNum() == other.getNum() && this.getDen() == other.getDen()) {
-			return 0;
-		}
-		else if(this.getNum()/this.getDen() < other.getNum()/other.getDen()) {
-			return -1;
-		}
-		else {
-			return 1;
-		}*/
 	}
 	
 	//write  toString() method
