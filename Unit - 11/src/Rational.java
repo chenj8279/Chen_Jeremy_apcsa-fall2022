@@ -41,44 +41,43 @@ class Rational implements Comparable<Rational>
 		//num1/den1 + num2/den2 
 		//new numerator = (num1 * den2 + num2 * den1)
 		//new denominator = (den1 * den2)
-		
-		this.num = (this.num * other.den + other.num * this.den);
-		this.den = this.den * other.den;
-		
+		this.num = (this.getNum() * other.getDen() + other.getNum() * this.getDen());
+		this.den = this.getDen() * other.getDen();
 		reduce();
 	}
 
 	private void reduce()
 	{
-		int factor;
-		if(num>den) {
-			factor = gcd(num, den);
+		int factor = gcd(Math.max(getNum(), getDen()), Math.min(getNum(),getDen()));
+		/*if(getNum()>getDen()) {
+			factor = gcd(getNum(), getDen());
 		}
-		else if(den>num) {
-			factor = gcd(den, num);
+		else if(getDen()>getNum()) {
+			factor = gcd(getDen(), getNum());
 		}
 		else {
 			factor = 1;
-		}
-		num = num/factor;
-		den = den/factor;
+		}*/
+		num = getNum()/factor;
+		den = getDen()/factor;
 	}
 
 	private int gcd(int numOne, int numTwo)
 	{
 		int factor = 1;
-		for(int i = numTwo/2; i> 0; i--) {
+		for(int i = numTwo; i> 0; i--) {
 			if(numTwo%i == 0 && numOne%i == 0) {
 				factor = i;
-				break;
+				return factor;
 			}
 		}
 		return factor;
 	}
 	
-	public Object clone ()
+	public Object clone()
 	{
-		return new Rational(getNum(), getDen());
+		Rational c = new Rational(getNum(), getDen());
+		return c;
 	}
 	
 	//ACCESSORS
@@ -94,30 +93,46 @@ class Rational implements Comparable<Rational>
 	
 	public boolean equals(Object obj)
 	{
-		((Rational) obj).reduce();
-		this.reduce();
-		if(this == obj) {
+		if(this.compareTo((Rational) obj) == 0) {
 			return true;
 		}
+		
+//		this.reduce();
+//		obj.reduce();
+//		if(this.getNum() == obj.getNum() && this.getDen() == obj.getDen()) {
+//			return true;
+//		}
 		return false;
 	}
 
 	public int compareTo(Rational other)
 	{
-		double ofThis = this.num/this.den;
-		double ofOther = other.num/other.den;
-		if(ofThis > ofOther) {
+		double decThis = (double)this.getNum()/this.getDen();
+		double decOther = (double)other.getNum()/other.getDen();
+		if(decThis > decOther) {
 			return 1;
 		}
-		else if(ofThis == ofOther) {
+		else if(decThis < decOther) {
+			return -1;
+		}
+		else {
 			return 0;
 		}
-		return -1;
+		//this.getNum()/this.getDen() > other.getNum()/other.getDen()
+		/*if(this.getNum() == other.getNum() && this.getDen() == other.getDen()) {
+			return 0;
+		}
+		else if(this.getNum()/this.getDen() < other.getNum()/other.getDen()) {
+			return -1;
+		}
+		else {
+			return 1;
+		}*/
 	}
 	
 	//write  toString() method
 	public String toString() {
 		
-		return "" + this.num + "/" + this.den;
+		return "" + this.getNum() + "/" + this.getDen();
 	}
 }
