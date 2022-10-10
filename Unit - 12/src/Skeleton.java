@@ -45,7 +45,16 @@ public class Skeleton implements Monster
 		}
 		return false;
 	}
-	
+	public boolean namesTheSame(Monster other) {
+		if(this.getName().equals(other.getName())) {
+			return true;
+		}
+		return false;
+	}
 	
 	//add a toString
+	public String toString() {
+		return "" + this.getName() + " " + this.getHowBig();
+	}
+	
 }
