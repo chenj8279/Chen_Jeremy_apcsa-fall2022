@@ -20,23 +20,22 @@ public class WordRunner
 		String[] words = new String[size];
 		for(int i = 0; file.hasNext(); i++) {
 			words[i] = file.nextLine();
-			out.println(words[i]);
+			//out.println(words[i]);
 		}
-		out.print("\n");
+		//out.print("\n");
 		for(int i = 0; i < words.length; i++) {
 			String temp = words[i];
-			String nextWord = words[i];
-			for(int j = i+1; file.hasNext(); j++) {
-				if(nextWord.compareTo(words[j]) < 0) {
-					nextWord = words[j];
+			for(int j = i + 1; j < words.length; j++) {
+				out.println(words[i].compareTo(words[j]) + " " + words[i] + " " + words[j]);
+				if(words[i].compareTo(words[j]) > 0) {
+					words[i] = words[j];
+					words[j] = temp;
+					temp = words[i];
+					out.print(words[i] + "\n" + words[j] + "\n");
 				}
 			}
-			words[i] = nextWord;
-			nextWord = temp;
-			out.println(words[i]);
+			out.println("\n" + words[i] + "\n");
 		}
-		
-		
 		
 	}
 }
