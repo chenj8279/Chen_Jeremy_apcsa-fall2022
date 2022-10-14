@@ -7,43 +7,31 @@ import static java.lang.System.*;
 public class Word implements Comparable<Word>
 {
 	private String word;
+	private int wordLen;
 
 	public Word( String s )
 	{
-		word = s;
+		this.word = s;
+		this.wordLen = word.length();
 	}
+	
 
 	public int compareTo( Word rhs )
 	{
-		int result = 1;
-		if(word.length() > rhs.toString().length()) {
-			result = 1;
+//		if(word.length() == rhs.toString().length()) {
+//			int ind = 0;
+//			while(word.charAt(ind) == rhs.toString().charAt(ind) && ind < wordLen) {
+//				ind++;
+//			}
+//			if(word.charAt(ind) < rhs.toString().charAt(ind)) {
+//				return 1;
+//			}
+//		}
+		//out.print(this.wordLen + " " + rhs.wordLen);
+		if(this.wordLen > rhs.wordLen){
 			return 1;
 		}
-		else if(word.length() < rhs.toString().length()){
-			result = -1;
-			return -1;
-		}
-		else {
-			int ind = 0;
-			do {
-				if(word.charAt(ind) < rhs.toString().charAt(ind)) {
-					result = -1;
-					return -1;
-				}
-				ind++;
-			}while(word.charAt(ind) == rhs.toString().charAt(ind));
-			//for(int i = 0; word.charAt(i) == rhs.toString().charAt(i); i++) {
-				//if(word.charAt(i) < rhs.toString().charAt(i)) {
-					//result = -1;
-					//return -1;
-				//}
-			//}
-			//result = 1;
-			//return 1;
-		}
-		
-		return result;
+		return -1;
 		
 	}
 

@@ -13,28 +13,36 @@ public class WordRunner
 	public static void main( String args[] ) throws IOException
 	{
 		Scanner file = new Scanner(new File("C:\\Users\\chenj8279\\Desktop\\APCSA Units\\Unit12Students\\Unit12-Assignments\\words.dat"));
-
-		int size = file.nextInt();
-		file.nextLine();
 		
-		String[] words = new String[size];
+		
+		Word[] words = new Word[file.nextInt()];
+		file.nextLine();
 		for(int i = 0; file.hasNext(); i++) {
-			words[i] = file.nextLine();
+			
+			words[i] = new Word(file.nextLine());
 			//out.println(words[i]);
 		}
-		//out.print("\n");
+		
+		Arrays.sort(words);
+		
+		out.print("\n");
+//		for(int i = 0; i < words.length; i++) {
+//			int spot = i;
+//			for(int j = i + 1; j < words.length; j++) {
+//				//out.println(words[j].compareTo(words[spot]) + " " + words[j] + " " + words[spot]);
+//				if(words[j].compareTo(words[spot]) < 0) {
+//					spot = j;
+//				}
+//			}
+//			String temp = words[i];
+//			words[i] = words[spot];
+//			words[spot] = temp;
+//			//out.println("\n" + words[i] + "\n");
+//			out.println(words[i]);
+//		}
+		
 		for(int i = 0; i < words.length; i++) {
-			String temp = words[i];
-			for(int j = i + 1; j < words.length; j++) {
-				out.println(words[i].compareTo(words[j]) + " " + words[i] + " " + words[j]);
-				if(words[i].compareTo(words[j]) > 0) {
-					words[i] = words[j];
-					words[j] = temp;
-					temp = words[i];
-					out.print(words[i] + "\n" + words[j] + "\n");
-				}
-			}
-			out.println("\n" + words[i] + "\n");
+			out.println(words[i]);
 		}
 		
 	}
