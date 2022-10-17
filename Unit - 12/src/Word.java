@@ -15,24 +15,24 @@ public class Word implements Comparable<Word>
 		this.wordLen = word.length();
 	}
 	
-
 	public int compareTo( Word rhs )
 	{
-//		if(word.length() == rhs.toString().length()) {
-//			int ind = 0;
-//			while(word.charAt(ind) == rhs.toString().charAt(ind) && ind < wordLen) {
-//				ind++;
-//			}
-//			if(word.charAt(ind) < rhs.toString().charAt(ind)) {
-//				return 1;
-//			}
-//		}
-		//out.print(this.wordLen + " " + rhs.wordLen);
-		if(this.wordLen > rhs.wordLen){
-			return 1;
+		if(this.wordLen < rhs.wordLen){
+			return -1;
 		}
-		return -1;
-		
+		else if(this.wordLen == rhs.wordLen) {
+			//out.print(this.word + " " +rhs.word);
+//			for(int i = 0; i < this.wordLen; i++) {
+//				out.print(this.word.charAt(i) + " " + rhs.word.charAt(i));
+//				out.print(this.word.charAt(i)-rhs.word.charAt(i));
+//				if(this.word.charAt(i) < rhs.word.charAt(i)) {
+//					
+//					return -1;
+//				}
+//			}
+			return this.word.compareTo(rhs.word);
+		}
+		return 1;
 	}
 
 	public String toString()
