@@ -26,4 +26,14 @@ public class MatrixCount1
     	}
 		return count;
     }
+    public String toString() {
+    	String matrix = "";
+    	for(int i = 0; i < m.length; i++) {
+    		for(int j = 0; j < m[i].length; j++) {
+    			matrix += m[i][j] + " ";
+    		}
+    		matrix += "\n";
+    	}
+    	return matrix;
+    }
 }

@@ -13,6 +13,7 @@ public class MatrixCount1Runner
 		MatrixCount1 test = new MatrixCount1();
 		
 		System.out.println("Matrix values");
+		System.out.println(test);
 		System.out.println("The 7 count is :: " + MatrixCount1.count(7));
 		System.out.println("The 8 count is :: " + MatrixCount1.count(8));
 		System.out.println("The 6 count is :: " + MatrixCount1.count(6));
