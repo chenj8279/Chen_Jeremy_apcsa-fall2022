@@ -9,16 +9,14 @@ public class Grid
    //load vals into the rows x cols grid randomly
 	public Grid(int rows, int cols, String[] vals)
 	{
-		int c = cols;
-		while(rows>0) {
-			while(c > 0) {
-				grid[rows][c] = vals[(int) Math.floor(Math.random()*vals.length)];
-				c--;
+		grid = new String[rows][cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++) {
+				grid[i][j] = vals[(int) Math.floor(Math.random()*vals.length)];
+				//grid[i][j] = vals[0];
 			}
-			c = cols;
-			rows--;
 		}
-		findMax(vals);
+		//findMax(vals);
 	}
 
 	//find out which of the vals occurs the most
@@ -26,10 +24,11 @@ public class Grid
 	{
 		int max = 0;
 		for(int i = 0; i < vals.length; i++) {
-			System.out.println(countVals(vals[i]));
+			System.out.println(countVals(vals[i]) + " " + vals[i]);
 			max = Math.max(countVals(vals[i]), countVals(vals[max]));
 		}
-		return "\n\n" + max + "occurs the most";
+		System.out.println(max);
+		return "\n\n" + vals[max] + "occurs the most";
 	}
 
 	//returns a count of how many times val occurs in the matrix
@@ -56,7 +55,6 @@ public class Grid
     		}
     		output += "\n";
     	}
-    	
 		return output + "\n";
 	}
 }
