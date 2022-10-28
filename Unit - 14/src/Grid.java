@@ -24,11 +24,14 @@ public class Grid
 	{
 		int max = 0;
 		for(int i = 0; i < vals.length; i++) {
-			System.out.println(countVals(vals[i]) + " " + vals[i]);
-			max = Math.max(countVals(vals[i]), countVals(vals[max]));
+			//System.out.print(countVals(vals[i]) + " " + vals[i]);
+			if(countVals(vals[i]) > countVals(vals[max])) {
+				max = i;
+			}
+			//System.out.print(" " + max + "\n");
 		}
-		System.out.println(max);
-		return "\n\n" + vals[max] + "occurs the most";
+		//System.out.println(max);
+		return "" + vals[max] + " occurs the most";
 	}
 
 	//returns a count of how many times val occurs in the matrix
@@ -55,6 +58,6 @@ public class Grid
     		}
     		output += "\n";
     	}
-		return output + "\n";
+		return output + "";
 	}
 }

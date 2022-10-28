@@ -11,7 +11,7 @@ public class RecursionFunOne
 		if(num == 0) {
 			return 0;
 		}
-		else if(num%10%2 == 0) {
+		else if(num%2 == 0) {
 			return 1 + countOddDigits(num/10);
 		}
 		else {
