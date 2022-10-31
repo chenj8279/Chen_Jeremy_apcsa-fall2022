@@ -36,11 +36,11 @@ public class WordSearch
     }
 
 	public boolean checkRight(String w, int r, int c) {
-		if(c >= m[r].length) {
-			return false;
-		}
-		else if(w.length() == 0) {
+		if(w.equals("")) {
 			return true;
+		}
+		else if(c >= m[r].length) {
+			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
 			return checkRight(w.substring(1), r, c+1);
@@ -51,11 +51,11 @@ public class WordSearch
 	}
 
 	public boolean checkLeft(String w, int r, int c) {
-		if(c < 0) {
-			return false;
-		}
-		else if(w.length() == 0) {
+		if(w.equals("")) {
 			return true;
+		}
+		else if(c < 0) {
+			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
 			return checkRight(w.substring(1), r, c-1);
@@ -66,11 +66,11 @@ public class WordSearch
 	}
 
 	public boolean checkUp(String w, int r, int c) {
-		if(r < 0) {
-			return false;
-		}
-		else if(w.length() == 0) {
+		if(w.equals("")) {
 			return true;
+		}
+		else if(r < 0) {
+			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
 			return checkRight(w.substring(1), r-1, c);
@@ -81,11 +81,11 @@ public class WordSearch
 	}
 
 	public boolean checkDown(String w, int r, int c) {
-		if(r >= m.length) {
-			return false;
-		}
-		else if(w.length() == 0) {
+		if(w.equals("")) {
 			return true;
+		}
+		else if(r >= m.length) {
+			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
 			return checkRight(w.substring(1), r+1, c);
@@ -96,11 +96,11 @@ public class WordSearch
 	}
 
 	public boolean checkDiagUpRight(String w, int r, int c) {
-		if(c >= m[r].length || r < 0) {
-			return false;
-		}
-		else if(w.length() == 0) {
+		if(w.equals("")) {
 			return true;
+		}
+		elseif(c >= m[r].length || r < 0) {
+			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
 			return checkRight(w.substring(1), r-1, c+1);
@@ -111,11 +111,11 @@ public class WordSearch
 	}
 
 	public boolean checkDiagUpLeft(String w, int r, int c) {
-		if(c < 0 || r < 0) {
-			return false;
-		}
-		else if(w.length() == 0) {
+		if(w.equals("")) {
 			return true;
+		}
+		else if(c < 0 || r < 0) {
+			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
 			return checkRight(w.substring(1), r-1, c-1);
@@ -126,11 +126,11 @@ public class WordSearch
 	}
 
 	public boolean checkDiagDownLeft(String w, int r, int c) {
-		if(r >= m.length || c < 0) {
-			return false;
-		}
-		else if(w.length() == 0) {
+		if(w.equals("")) {
 			return true;
+		}
+		else if(r >= m.length || c < 0) {
+			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
 			return checkRight(w.substring(1), r+1, c-1);
@@ -141,11 +141,11 @@ public class WordSearch
 	}
 
 	public boolean checkDiagDownRight(String w, int r, int c) {
-		if(c >= m[r].length || r >= m.length) {
-			return false;
-		}
-		else if(w.length() == 0) {
+		if(w.equals("")) {
 			return true;
+		}
+		else if(c >= m[r].length || r >= m.length) {
+			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
 			return checkRight(w.substring(1), r+1, c+1);
