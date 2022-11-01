@@ -58,7 +58,7 @@ public class WordSearch
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
-			return checkRight(w.substring(1), r, c-1);
+			return checkLeft(w.substring(1), r, c-1);
 		}
 		else {
 			return false;
@@ -73,7 +73,7 @@ public class WordSearch
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
-			return checkRight(w.substring(1), r-1, c);
+			return checkUp(w.substring(1), r-1, c);
 		}
 		else {
 			return false;
@@ -88,7 +88,7 @@ public class WordSearch
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
-			return checkRight(w.substring(1), r+1, c);
+			return checkDown(w.substring(1), r+1, c);
 		}
 		else {
 			return false;
@@ -99,11 +99,11 @@ public class WordSearch
 		if(w.equals("")) {
 			return true;
 		}
-		elseif(c >= m[r].length || r < 0) {
+		else if(c >= m[r].length || r < 0) {
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
-			return checkRight(w.substring(1), r-1, c+1);
+			return checkDiagUpRight(w.substring(1), r-1, c+1);
 		}
 		else {
 			return false;
@@ -118,7 +118,7 @@ public class WordSearch
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
-			return checkRight(w.substring(1), r-1, c-1);
+			return checkDiagUpLeft(w.substring(1), r-1, c-1);
 		}
 		else {
 			return false;
@@ -133,7 +133,7 @@ public class WordSearch
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
-			return checkRight(w.substring(1), r+1, c-1);
+			return checkDiagDownLeft(w.substring(1), r+1, c-1);
 		}
 		else {
 			return false;
@@ -148,7 +148,7 @@ public class WordSearch
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
-			return checkRight(w.substring(1), r+1, c+1);
+			return checkDiagDownRight(w.substring(1), r+1, c+1);
 		}
 		else {
 			return false;
