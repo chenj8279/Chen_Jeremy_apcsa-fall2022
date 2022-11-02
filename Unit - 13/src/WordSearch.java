@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Jeremy Chen
 
 import java.util.*;
 import java.io.*; 
@@ -28,7 +28,10 @@ public class WordSearch
     	for(int i = 0; i < m.length; i++) {
     		for(int j = 0; j < m[i].length; j++) {
     			if(m[i][j].charAt(0) == word.charAt(0)) {
-    				result = (checkRight(word, i, j) || checkLeft(word, i, j) || checkUp(word, i, j) || checkDown(word, i, j) || checkDiagUpRight(word, i, j) || checkDiagDownRight(word, i, j) || checkDiagUpLeft(word, i, j) || checkDiagDownLeft(word, i, j));
+    				result = (checkRight(word, i, j) || checkLeft(word, i, j) || checkUp(word, i, j) || checkDown(word, i, j) || checkDiagUpRight(word, i, j) || checkDiagUpLeft(word, i, j) || checkDiagDownRight(word, i, j) ||checkDiagDownLeft(word, i, j));
+    			}
+    			if(result) {
+    				return result;
     			}
     		}
     	}
@@ -99,7 +102,7 @@ public class WordSearch
 		if(w.equals("")) {
 			return true;
 		}
-		else if(c >= m[r].length || r < 0) {
+		else if(r < 0 || c >= m[r].length) {
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
@@ -114,7 +117,7 @@ public class WordSearch
 		if(w.equals("")) {
 			return true;
 		}
-		else if(c < 0 || r < 0) {
+		else if(r < 0 || c < 0) {
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
@@ -144,7 +147,7 @@ public class WordSearch
 		if(w.equals("")) {
 			return true;
 		}
-		else if(c >= m[r].length || r >= m.length) {
+		else if(r >= m.length || c >= m[r].length) {
 			return false;
 		}
 		else if(w.charAt(0) == m[r][c].charAt(0)) {
