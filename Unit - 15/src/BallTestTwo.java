@@ -61,6 +61,7 @@ class BallTestTwo extends Canvas implements Runnable
          }
       }catch(Exception e)
       {
+    	  
       }
   	}	
 }
