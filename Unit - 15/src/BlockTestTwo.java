@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Jeremy Chen
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -31,5 +31,7 @@ public class BlockTestTwo extends Canvas
 		
 		//add more test cases
 		
+		Block five = new Block(300,300,20,20,Color.CYAN);
+		five.draw(window);
 	}
 }

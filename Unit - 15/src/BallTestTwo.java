@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Jeremy Chen
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,13 +19,16 @@ class BallTestTwo extends Canvas implements Runnable
 		setVisible(true);
 		
 		//instantiate a new Ball
-		
+		ball = new Ball();
 		
 		//test the Ball thoroughly
 		
 		
 		//test all constructors
-		
+		//ball = new Ball(50, 50, 3, 3);
+		//ball = new Ball(100, 300, 10, 10, Color.red);
+		//ball = new Ball(200, 100, 10, 10, Color.blue);
+		//ball = new Ball(300, 100, 10, 10, Color.green);
 		
 		new Thread(this).start();
 	}
@@ -52,11 +55,10 @@ class BallTestTwo extends Canvas implements Runnable
 	
 	public void run() {
 		try {
-			while(true)
-   		{
-   		   Thread.currentThread().sleep(19);
-            repaint();
-        }
+			while(true) {
+				Thread.currentThread().sleep(19);
+				repaint();
+			}
 		}catch(Exception e) {
 			
 		}

@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Jeremy Chen
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,82 +17,63 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 {
 	private Ball ball;
 	private Paddle leftPaddle;
+	private Paddle rightPaddle;
 	private boolean[] keys;		//keeps track of what keys are pressed
-
-	public PaddleTestTwo()
-	{
+	
+	public PaddleTestTwo() {
 		//set up all game variables
-
-
+		
 		//instantiate a Ball
-		
-		
-		
+		ball = new Ball();
 		//instantiate a left Paddle
-		
-		
-		
-		
+		leftPaddle = new Paddle(20, 300, 5);
 		//instantiate a right Paddle
+		rightPaddle = new Paddle(200, 300, 5);
 		
-		
-		
-
-
 		keys = new boolean[5];
-
-
+		
 		//set up the Canvas
 		setBackground(Color.WHITE);
 		setVisible(true);
-
+		
 		this.addKeyListener(this);
 		new Thread(this).start();
 	}
 	
-	public void update(Graphics window)
-	{
+	public void update(Graphics window) {
 		paint(window);
 	}
-
-	public void paint(Graphics window)
-	{
+	
+	public void paint(Graphics window) {
 		ball.moveAndDraw(window);
 		leftPaddle.draw(window);
-
-		if(!(ball.getX()>=10 && ball.getX()<=550))
-		{
+		rightPaddle.draw(window);
+		
+		if(!(ball.getX()>=10 && ball.getX()<=550)) {
 			ball.setXSpeed(-ball.getXSpeed());
 		}
-
-		if(!(ball.getY()>=10 && ball.getY()<=450))
-		{
+		
+		if(!(ball.getY()>=10 && ball.getY()<=450)) {
 			ball.setYSpeed(-ball.getYSpeed());
 		}
-
-		if(keys[0] == true)
-		{
+		
+		if(keys[0] == true) {
 			//move left paddle up and draw it on the window
 			leftPaddle.moveUpAndDraw(window);
 		}
-		if(keys[1] == true)
-		{
+		if(keys[1] == true) {
 			//move left paddle down and draw it on the window
-
-
+			leftPaddle.moveDownAndDraw(window);
 		}
-		if(keys[2] == true)
-		{
-
+		if(keys[2] == true) {
+			rightPaddle.moveUpAndDraw(window);
 		}
-		if(keys[3] == true)
-		{
-
+		if(keys[3] == true) {
+			rightPaddle.moveDownAndDraw(window);
 		}
 	}
-
-	public void keyPressed(KeyEvent e)
-	{
+	
+	public void keyPressed(KeyEvent e) {
 		switch(toUpperCase(e.getKeyChar()))
 		{
 			case 'W' : keys[0]=true; break;
@@ -101,9 +82,8 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 			case 'M' : keys[3]=true; break;
 		}
 	}
-
-	public void keyReleased(KeyEvent e)
-	{
+	
+	public void keyReleased(KeyEvent e) {
 		switch(toUpperCase(e.getKeyChar()))
 		{
 			case 'W' : keys[0]=false; break;
@@ -112,23 +92,19 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 			case 'M' : keys[3]=false; break;
 		}
 	}
-
-	public void keyTyped(KeyEvent e)
-	{
+	
+	public void keyTyped(KeyEvent e) {
 		//no code needed here
 	}
 	
-   public void run()
-   {
-   	try
-   	{
-   		while(true)
-   		{
-   		   Thread.currentThread().sleep(8);
-            repaint();
-         }
-      }catch(Exception e)
-      {
-      }
-  	}		
+	public void run() {
+		try {
+			while(true) {
+				Thread.currentThread().sleep(8);
+				repaint();
+			}
+		}catch(Exception e) {
+			
+		}
+	}		
 }

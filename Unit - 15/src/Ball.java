@@ -5,47 +5,49 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
-{
+public class Ball extends Block {
 	private int xSpeed;
 	private int ySpeed;
-
-	public Ball()
-	{
+	
+	public Ball() {
 		super(200,200);
 		xSpeed = 3;
 		ySpeed = 1;
 	}
 	
 	//add the other Ball constructors
+	public Ball(Color col) {
+		super(200, 200, col);
+		xSpeed = 3;
+		ySpeed = 1;
+	}
+	
 	public Ball(int x, int y) {
-		setPos(x, y);
+		super(x,y);
 		xSpeed = 3;
 		ySpeed =1;
 	}
 	
 	public Ball(int x, int y, int w, int h) {
-		setPos(x, y);
-		setWidth(w);
-		setHeight(h);
+		super(x, y, w, h);
 		xSpeed = 3;
 		ySpeed =1;
 	}
 	
+	public Ball(int x, int y, int w, int h, int xSpd, int ySpd) {
+		super(x, y, w, h);
+		setXSpeed(xSpd);
+		setYSpeed(ySpd);
+	}
+	
 	public Ball(int x, int y, int w, int h, Color col) {
-		setPos(x, y);
-		setWidth(w);
-		setHeight(h);
-		setColor(col);
+		super(x, y, w, h, col);
 		xSpeed = 3;
 		ySpeed =1;
 	}
 	
 	public Ball(int x, int y, int w, int h, Color col, int xSpd, int ySpd) {
-		setPos(x, y);
-		setWidth(w);
-		setHeight(h);
-		setColor(col);
+		super(x, y, w, h, col);
 		setXSpeed(xSpd);
 		setYSpeed(ySpd);
 	}
@@ -54,27 +56,9 @@ public class Ball extends Block
 	public void setXSpeed(int xSpd) {
 		xSpeed = xSpd;
 	}
+	
 	public void setYSpeed(int ySpd) {
 		ySpeed = ySpd;
-	}
-	
-	public void moveAndDraw(Graphics window) {
-		//draw a white ball at old ball location
-		setX(getX()+xSpeed);
-		//setY
-		setY(getY()+ySpeed);
-		//draw the ball at its new location
-		draw(window, this.getColor());
-	}
-	
-	public boolean equals(Object obj) {
-		Ball o = (Ball) obj;
-		if(getX() == o.getX() && getY() == o.getY() && getWidth() == o.getWidth() &&
-				getHeight() == o.getHeight() && getColor() == o.getColor() && 
-				this.getXSpeed() == o.getXSpeed() && getYSpeed() == o.getYSpeed()) {
-			return true;
-		}
-		return false;
 	}
 	
 	//add the get methods
@@ -86,9 +70,32 @@ public class Ball extends Block
 		return ySpeed;
 	}
 	
-	//add a toString() method
-	public String toString() {
-		return "" + getX() + " " + getY() + " " + getWidth() + " " + getHeight() + " " + getColor() + " " + getXSpeed() + " " + getYSpeed();
+	public void moveAndDraw(Graphics window) {
+		//draw a white ball at old ball location
+		draw(window, Color.white);
+		//setX
+		setX(getX()+xSpeed);
+		//setY
+		setY(getY()+ySpeed);
+		//draw the ball at its new location
+		draw(window, super.getColor());
 	}
 	
+	public boolean equals(Object obj) {
+		Ball o = (Ball) obj;
+		if(getXSpeed() != o.getXSpeed()) {
+			return false;
+		}
+		else if(getYSpeed() != o.getYSpeed()) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	//add a toString() method
+	public String toString() {
+		return "" + super.toString() + " " + getXSpeed() + " " + getYSpeed();
+	}
 }

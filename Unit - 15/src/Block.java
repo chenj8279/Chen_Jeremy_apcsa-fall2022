@@ -30,6 +30,14 @@ public class Block implements Locatable
 		height = 10;
 		color = Color.black;
 	}
+	
+	public Block(int x, int y, Color col) {
+		setPos(x, y);
+		width = 10;
+		height = 10;
+		setColor(col);
+	}
+	
 	public Block(int x, int y, int w, int h) {
 		setPos(x, y);
 		setWidth(w);
@@ -49,6 +57,7 @@ public class Block implements Locatable
 		setX(x);
 		setY(y);
 	}
+	
 	public void setX(int x) {
 		xPos = x;
 	}
@@ -69,6 +78,27 @@ public class Block implements Locatable
 		color = col;
 	}
 	
+	//add the other get methods
+	public int getX() {
+		return xPos;
+	}
+	
+	public int getY() {
+		return yPos;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+		
+	public Color getColor() {
+		return color;
+	}
+	
 	//graphics
 	public void draw(Graphics window) {
 		//uncomment after you write the set and get methods
@@ -77,34 +107,12 @@ public class Block implements Locatable
 	}
 	
 	public void draw(Graphics window, Color col) {
-		window.setColor(col);
-		window.fillRect(getX(), getY(), getWidth(), getHeight());
+		draw(window);
 	}
 	
 	public boolean equals(Object obj) {
 		Block o = (Block) obj;
-		if(getX() == o.getX() && getY() == o.getY() && getWidth() == o.getWidth() &&
-				getHeight() == o.getHeight() && getColor() == o.getColor()) {
-			return true;
-		}
-		return false;
-	}
-	
-	//add the other get methods
-	public int getX() {
-		return xPos;
-	}
-	public int getY() {
-		return yPos;
-	}
-	public int getWidth() {
-		return width;
-	}
-	public int getHeight() {
-		return height;
-	}
-	public Color getColor() {
-		return color;
+		return this == o;
 	}
 	
 	//add a toString() method  - x , y , width, height, color
