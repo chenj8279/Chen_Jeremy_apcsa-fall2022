@@ -10,15 +10,15 @@ class SpeedUpBall extends Ball {
 	//instance variables
 	
 	public SpeedUpBall() {
-		super();
+		//super();
 	}
 	
 	public SpeedUpBall(int x, int y) {
-		super(x, y);
+		//super(x, y);
 	}
 	
 	public SpeedUpBall(int x, int y, int xSpd, int ySpd) {
-		super(x, y, xSpd, ySpd);
+		//super(x, y, xSpd, ySpd);
 	}
 	
 	public SpeedUpBall(int x, int y, int wid, int ht, int xSpd, int ySpd) {
@@ -37,4 +37,3 @@ class SpeedUpBall extends Ball {
 		
 	}
 }
-

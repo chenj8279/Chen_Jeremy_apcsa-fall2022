@@ -11,13 +11,13 @@ public class Paddle extends Block {
 	
 	public Paddle() {
 		super(10,10);
-		speed =5;
+		speed = 5;
 	}
 	
 	//add the other Paddle constructors
 	public Paddle(int x, int y) {
 		super(x, y);
-		speed = 2;
+		speed = 5;
 	}
 	
 	public Paddle(int x, int y, int spd) {
@@ -27,12 +27,12 @@ public class Paddle extends Block {
 	
 	public Paddle(int x, int y, int w, int h) {
 		super(x, y, w, h);
-		speed = 2;
+		speed = 5;
 	}
 	
 	public Paddle(int x, int y, int w, int h, Color col) {
 		super(x, y, w, h, col);
-		speed = 2;
+		speed = 5;
 	}
 	
 	public Paddle(int x, int y, int w, int h, int spd) {
@@ -58,21 +58,21 @@ public class Paddle extends Block {
 	public void moveUpAndDraw(Graphics window) {
 		draw(window, Color.white);
 		
-		setY(getY()-speed);
+		setY(getY()-getSpeed());
 		
-		draw(window, Color.black);
+		draw(window, super.getColor());
 	}
 	
 	public void moveDownAndDraw(Graphics window) {
-		draw(window, Color.white);
+		super.draw(window, Color.white);
 		
-		setY(getY()+speed);
+		setY(getY()+getSpeed());
 		
-		draw(window, Color.black);
+		super.draw(window, super.getColor());
 	}
 	
 	//add a toString() method
 	public String toString() {
-		return "";
+		return super.toString() + " " + getSpeed();
 	}
 }

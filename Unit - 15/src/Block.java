@@ -107,7 +107,8 @@ public class Block implements Locatable
 	}
 	
 	public void draw(Graphics window, Color col) {
-		draw(window);
+		window.setColor(col);
+		window.fillRect(getX(), getY(), getWidth(), getHeight());
 	}
 	
 	public boolean equals(Object obj) {

@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name - Jeremy Chen
+//Name -
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,16 +13,31 @@ import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 
-public class Pong extends Canvas implements KeyListener, Runnable {
+public class Pong extends Canvas implements KeyListener, Runnable
+{
+	private Wall rightWall;
+	private Wall leftWall;
+	private Wall topWall;
+	private Wall botWall;
 	private Ball ball;
 	private Paddle leftPaddle;
 	private Paddle rightPaddle;
 	private boolean[] keys;
 	private BufferedImage back;
-	
-	public Pong() {
+
+
+	public Pong()
+	{
 		//set up all variables related to the game
+		leftWall = new Wall (0, 10, 10, 600);
+		rightWall = new Wall (650, 10, 10, 600);
+		topWall = new Wall (0, 0, 650, 10);
+		botWall = new Wall (0, 600, 650, 10);
 		
+		ball = new Ball();
+		
+		leftPaddle = new Paddle(75, 300, 10, 50, 5);
+		rightPaddle = new Paddle(575, 300, 10, 50, 5);
 		
 		keys = new boolean[4];
 		
@@ -37,7 +52,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 	public void update(Graphics window){
 		paint(window);
 	}
-	
+
 	public void paint(Graphics window) {
 		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
@@ -45,7 +60,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		//take a snap shop of the current screen and same it as an image
 		//that is the exact same width and height as the current screen
 		if(back==null)
-		   back = (BufferedImage)(createImage(getWidth(),getHeight()));
+			back = (BufferedImage)(createImage(getWidth(),getHeight()));
 		
 		//create a graphics reference to the back ground image
 		//we will draw all changes on the background image
@@ -56,25 +71,34 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		leftPaddle.draw(graphToBack);
 		rightPaddle.draw(graphToBack);
 		
-		
+
 		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=10 && ball.getX()<=780)) {
+		if(ball.didCollideLeft(leftWall) || ball.didCollideRight(rightWall)) {
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
 		}
 		
-		
 		//see if the ball hits the top or bottom wall 
+		if(ball.didCollideBottom(botWall) || ball.didCollideTop(topWall)) {
+			ball.setYSpeed(-ball.getYSpeed());
+		}
 		
 		//see if the ball hits the left paddle
+		if(ball.didCollideLeft(leftPaddle)) {
+			ball.setXSpeed(-ball.getXSpeed());
+		}
 		
 		//see if the ball hits the right paddle
+		if(ball.didCollideRight(rightPaddle)) {
+			ball.setXSpeed(-ball.getXSpeed());
+		}
 		
 		//see if the paddles need to be moved
 		
+		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
-	
+
 	public void keyPressed(KeyEvent e) {
 		switch(toUpperCase(e.getKeyChar())) {
 			case 'W' : keys[0]=true; break;
@@ -83,7 +107,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 			case 'M' : keys[3]=true; break;
 		}
 	}
-	
+
 	public void keyReleased(KeyEvent e) {
 		switch(toUpperCase(e.getKeyChar())) {
 			case 'W' : keys[0]=false; break;
@@ -92,7 +116,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 			case 'M' : keys[3]=false; break;
 		}
 	}
-	
+
 	public void keyTyped(KeyEvent e){}
 	
 	public void run() {
@@ -101,8 +125,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 				Thread.currentThread().sleep(8);
 				repaint();
 			}
-		}catch(Exception e)
-		{
+		}catch(Exception e) {
 			
 		}
   	}	

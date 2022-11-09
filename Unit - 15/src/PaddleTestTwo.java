@@ -15,20 +15,31 @@ import java.awt.event.ActionListener;
 
 public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 {
+	private Wall leftWall;
+	private Wall rightWall;
+	private Wall topWall;
+	private Wall botWall;
+	
+	
 	private Ball ball;
+	
 	private Paddle leftPaddle;
 	private Paddle rightPaddle;
+	
 	private boolean[] keys;		//keeps track of what keys are pressed
 	
 	public PaddleTestTwo() {
 		//set up all game variables
-		
+		leftWall = new Wall (0, 10, 10, 600);
+		rightWall = new Wall (650, 10, 10, 600);
+		topWall = new Wall (0, 0, 650, 10);
+		botWall = new Wall (0, 600, 650, 10);
 		//instantiate a Ball
 		ball = new Ball();
 		//instantiate a left Paddle
-		leftPaddle = new Paddle(20, 300, 5);
+		leftPaddle = new Paddle(75, 300, 10, 50, 5);
 		//instantiate a right Paddle
-		rightPaddle = new Paddle(200, 300, 5);
+		rightPaddle = new Paddle(575, 300, 10, 50, 5);
 		
 		keys = new boolean[5];
 		
@@ -45,17 +56,37 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 	}
 	
 	public void paint(Graphics window) {
+		leftWall.draw(window);
+		rightWall.draw(window);
+		topWall.draw(window);
+		botWall.draw(window);
+		
 		ball.moveAndDraw(window);
+		
 		leftPaddle.draw(window);
 		rightPaddle.draw(window);
 		
-		if(!(ball.getX()>=10 && ball.getX()<=550)) {
+		if(ball.didCollideLeft(leftWall) || ball.didCollideLeft(leftPaddle)){
+			ball.setXSpeed(-ball.getXSpeed());
+		}
+		if(ball.didCollideLeft(rightWall) || ball.didCollideLeft(rightPaddle)){
+			ball.setXSpeed(-ball.getXSpeed());
+		}
+		
+		if(ball.didCollideTop(topWall)) {
+			ball.setYSpeed(-ball.getYSpeed());
+		}
+		if(ball.didCollideTop(botWall)) {
+			ball.setYSpeed(-ball.getYSpeed());
+		}
+		
+		/*if(!(ball.getX() >= 10 && ball.getX()<=550)) {
 			ball.setXSpeed(-ball.getXSpeed());
 		}
 		
 		if(!(ball.getY()>=10 && ball.getY()<=450)) {
 			ball.setYSpeed(-ball.getYSpeed());
-		}
+		}*/
 		
 		if(keys[0] == true) {
 			//move left paddle up and draw it on the window

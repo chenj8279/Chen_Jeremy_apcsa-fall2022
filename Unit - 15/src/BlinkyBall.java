@@ -1,6 +1,6 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
+//Name - Jeremy Chen
 
 import java.awt.Color;
 import java.awt.Graphics;
