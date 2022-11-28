@@ -135,6 +135,7 @@ public class PictureTester
 		swan.explore();
 	}
 	
+	/** Method to test edgeDetection2 */
 	public static void testEdgeDetection2() {
 		swan.edgeDetection2(10);
 		swan.explore();
@@ -167,11 +168,5 @@ public class PictureTester
 		//testCopy();
 		//testEdgeDetection();
 		testEdgeDetection2();
-		//testChromakey();
-		//testEncodeAndDecode();
-		//testGetCountRedOverValue(250);
-		//testSetRedToHalfValueInTopHalf();
-		//testClearBlueOverValue(200);
-		//testGetAverageForColumn(0);
 	}
 }
