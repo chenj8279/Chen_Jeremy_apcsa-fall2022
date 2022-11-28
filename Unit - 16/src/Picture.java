@@ -403,6 +403,104 @@ public class Picture extends SimplePicture
 			}
 		}
 	}
+	
+	/** Method to encode and hide a msg in a picture
+	 * 
+	 * @param messagePict is picture is with the msg
+	 */
+	public void encoder(Picture messagePict) {
+		Pixel[][] msgPixels = messagePict.getPixels2D();
+		Pixel[][] currPixels = this.getPixels2D();
+		Pixel pixCurr = null;
+		Pixel pixMsg = null;
+		
+		//edgeDetection
+		Pixel pix1 = null;
+		Pixel pix2 = null;
+		Pixel pix3 = null;
+		for(int row = 0; row < msgPixels.length-1; row++) {
+			for(int col = 0; col < msgPixels[row].length-1; col++) {
+				pix1 = msgPixels[row][col];
+				pix2 = msgPixels[row][col+1];
+				pix3 = msgPixels[row+1][col];
+				if((pix1.colorDistance(pix2.getColor()) > 10) || (pix1.colorDistance(pix3.getColor()) >  10)) {
+					pix1.setColor(Color.BLACK);
+				}
+				else {
+					pix1.setColor(Color.WHITE);
+				}
+			}
+		}
+		//last col
+		for(int i = 0; i < msgPixels.length-1; i++) {
+			pix1 = msgPixels[i][msgPixels.length-1];
+			pix2 = msgPixels[i+1][msgPixels.length-1];
+			if(pix1.colorDistance(pix2.getColor()) > 10) {
+				pix1.setColor(Color.BLACK);
+			}
+			else {
+				pix1.setColor(Color.WHITE);
+			}
+		}
+		//last row
+		for(int i = 0; i < msgPixels[msgPixels.length-1].length-1; i++) {
+			pix1 = msgPixels[msgPixels.length-1][i];
+			pix2 = msgPixels[msgPixels.length-1][i+1];
+			if(pix1.colorDistance(pix2.getColor()) > 10) {
+				pix1.setColor(Color.BLACK);
+			}
+			else {
+				pix1.setColor(Color.WHITE);
+			}
+		}
+		
+		List<Integer> pastKeys = new ArrayList<Integer>();
+		List<Pixel> usedPixels = new ArrayList<Pixel>();
+		Pixel key = null;
+		int colorCheck = 0;
+		for(int row = 0; row < currPixels.length; row++) {
+			for(int col = 0; col < currPixels[row].length; col++) {
+				key = currPixels[row][col];
+				if(pastKeys.indexOf(encoderHelperUniqueKey(colorCheck, key)) != -1) {
+					if(col < currPixels[row].length-1) {
+						col = col + 1;
+						key = currPixels[row][col];
+					}
+					else {
+						if(row < currPixels.length-1) {
+							col = 0;
+							row = row + 1;
+							key = currPixels[row][col];
+						}
+						else {
+							row = 0;
+							col = 0;
+							key = currPixels[row][col];
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public int encoderHelperUniqueKey(int colorCheck, Pixel key) {
+		if(colorCheck == 0) return key.getBlue();
+		if(colorCheck == 1) return key.getGreen();
+		if(colorCheck == 2) return key.getRed();
+		return 0;
+	}
+	
+	/** Method to decode a picture from encoder
+	 * 
+	 * @return picture with hidden msg
+	 */
+	public Picture decode() {
+		Pixel[][] pixels = this.getPixels2D();
+		Picture messagePicture = new Picture(this.getHeight(), this.getWidth());
+		
+		
+		return messagePicture;
+	}
 
 	/* Main method for testing - each class in Java can have a main 
 	 * method 

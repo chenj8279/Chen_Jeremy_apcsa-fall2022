@@ -18,6 +18,7 @@ public class PictureTester
 	private static Picture temple = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\temple.jpg");
 	private static Picture water = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\water.jpg");
 	
+	private static Picture msg = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\msg.jpg");
 	
 	/** Method to test zeroBlue */
 	public static void testZeroBlue()
@@ -140,6 +141,11 @@ public class PictureTester
 		swan.edgeDetection2(10);
 		swan.explore();
 	}
+	
+	/** Method to test encoder and decode*/
+	public static void testEncoder() {
+		msg.explore();
+	}
 
 	/** Main method for testing.  Every class can have a main
 	 * method in Java */
@@ -163,10 +169,10 @@ public class PictureTester
 		//testMirrorTemple();
 		//testMirrorArms();
 		//testMirrorGull();
-		//testMirrorDiagonal();
 		//testCollage();
 		//testCopy();
 		//testEdgeDetection();
-		testEdgeDetection2();
+		//testEdgeDetection2();
+		testEncoder();
 	}
 }
