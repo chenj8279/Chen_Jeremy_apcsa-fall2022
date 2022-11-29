@@ -12,7 +12,10 @@ public class PictureTester
 	private static Picture beach = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\beach.jpg");
 	private static Picture canvas = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\640x480.jpg");
 	private static Picture caterpillar = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\caterpillar.jpg");
+	private static Picture flower1 = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\flower1.jpg");
+	private static Picture flower2 = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\flower2.jpg");
 	private static Picture redMotorcycle = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\redMotorcycle.jpg");
+	private static Picture seagull = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\seagull.jpg");
 	private static Picture snowman = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\snowman.jpg");
 	private static Picture swan = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\swan.jpg");
 	private static Picture temple = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\temple.jpg");
@@ -121,7 +124,22 @@ public class PictureTester
 		snowman.mirrorArms();
 		snowman.explore();
 	}
+	
+	/** Method to test mirrorGull */
+	public static void testMirrorGull() {
+		seagull.explore();
+		seagull.mirrorGull();
+		seagull.explore();
+	}
 
+	/** Method to test Copy*/
+	public static void testCopy() {
+		canvas.explore();
+		canvas.copy(flower1, 0, 0);
+		canvas.copy(flower2, 0, 100, 0, flower2.getHeight(), 0, flower2.getWidth());
+		canvas.explore();
+	}
+	
 	/** Method to test the collage method */
 	public static void testCollage()
 	{
@@ -129,6 +147,12 @@ public class PictureTester
 		canvas.explore();
 	}
 
+	/** Method to test myCollage method */
+	public static void testMyCollage() {
+		canvas.myCollage();
+		canvas.explore();
+	}
+	
 	/** Method to test edgeDetection */
 	public static void testEdgeDetection()
 	{
@@ -169,10 +193,11 @@ public class PictureTester
 		//testMirrorTemple();
 		//testMirrorArms();
 		//testMirrorGull();
-		//testCollage();
 		//testCopy();
+		//testCollage();
+		//testMyCollage();
 		//testEdgeDetection();
 		//testEdgeDetection2();
-		testEncoder();
+		//testEncoder();
 	}
 }

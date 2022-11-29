@@ -277,7 +277,72 @@ public class Picture extends SimplePicture
 	
 	/** Mirror arms of a snowman to have 4 arms */
 	public void mirrorArms() {
-		//code on home pc
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel pix1 = null;
+		Pixel pix2 = null;
+		
+		//og arm positions
+		int xBeginR = 104;
+		int xStopR = 170;
+		int yBeginR = 159;
+		int yStopR = 191;
+		
+		int xBeginL = 238;
+		int xStopL = 294;
+		int yBeginL = 171;
+		int yStopL = 195;
+		
+		//new arm positions
+		int xNewArmR = 238 + xStopR - xBeginR;
+		int yNewArmR = 194 + yStopR - yBeginR;
+		
+		int xNewArmL = 170;
+		int yNewArmL = 206 + 180 - yBeginL;
+		
+		//right arm
+		for(int x = xBeginR; x < xStopR; x++) {
+			for(int y = yBeginR; y < yStopR; y++) {
+				int offsetX = x - xBeginR;
+				int offsetY = y - yBeginR;
+				
+				pix1 = pixels[y][x];
+				pix2 = pixels[yNewArmR - offsetY][xNewArmR - offsetX];
+				pix2.setColor(pix1.getColor());
+			}
+		}
+		
+		//left arm
+		for(int x = xBeginL; x < xStopL; x++) {
+			for(int y = yBeginL; y < yStopL; y++) {
+				int offsetX = x - xBeginL;
+				int offsetY = y - yBeginL;
+				
+				pix1 = pixels[y][x];
+				pix2 = pixels[yNewArmL - offsetY][xNewArmL - offsetX];
+				pix2.setColor(pix1.getColor());
+			}
+		}
+	}
+	
+	public void mirrorGull() {
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel ogBird = null;
+		Pixel newBird = null;
+		
+		//ogBird position
+		int xBird = 238;
+		int yBird = 235;
+		
+		int mirrorPoint = 345;
+		int yGround = 323;
+		
+		for(int x = xBird; x < mirrorPoint; x++) {
+			for(int y = yBird; y < yGround; y++) {
+				ogBird = pixels[y][x];
+				newBird = pixels[y+8][mirrorPoint + mirrorPoint - x];
+				newBird.setColor(ogBird.getColor());
+			}
+		}
 	}
 
 	/** copy from the passed fromPic to the
@@ -310,12 +375,32 @@ public class Picture extends SimplePicture
 			}
 		}   
 	}
-
+	
+	public void copy(Picture fromPic, int copyRow, int copyCol, int startRow, int endRow, int startCol, int endCol) {
+		Pixel fromPixel = null;
+		Pixel toPixel = null;
+		Pixel[][] toPixels = this.getPixels2D();
+		Pixel[][] fromPixels = fromPic.getPixels2D();
+		for(int fromRow = startRow, toRow = copyRow;
+				fromRow < endRow && toRow < toPixels.length;
+				fromRow++, toRow++) 
+		{
+			for(int fromCol = startCol, toCol = copyCol;
+					fromCol < endCol && toCol < toPixels[toRow].length;
+					fromCol++, toCol++)
+			{
+				fromPixel = fromPixels[fromRow][fromCol];
+				toPixel = toPixels[toRow][toCol];
+				toPixel.setColor(fromPixel.getColor());
+			}
+		}
+	}
+	
 	/** Method to create a collage of several pictures */
 	public void createCollage()
 	{
-		Picture flower1 = new Picture("flower1.jpg");
-		Picture flower2 = new Picture("flower2.jpg");
+		Picture flower1 = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\flower1.jpg");
+		Picture flower2 = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\flower2.jpg");
 		this.copy(flower1,0,0);
 		this.copy(flower2,100,0);
 		this.copy(flower1,200,0);
@@ -327,8 +412,23 @@ public class Picture extends SimplePicture
 		this.mirrorVerticalLeftToRight();
 		this.write("collage.jpg");
 	}
-
-
+	
+	public void myCollage() {
+		Picture beach = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\beach.jpg");
+		Picture beachMirror = new Picture(beach);
+		beachMirror.mirrorDiagonalBotLeft();
+		Picture flower1 = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\flower1.jpg");
+		Picture flower1Gray = new Picture(flower1);
+		flower1Gray.grayscale();
+		Picture snowman = new Picture("C:\\Users\\chenj8279\\Desktop\\Jeremy Chen - APCSA\\Unit - 16\\src\\images\\snowman.jpg");
+		Picture snowman4Arm = new Picture(snowman);
+		snowman4Arm.mirrorArms();
+		
+		this.copy(flower1Gray, 200, 0);
+		this.copy(snowman4Arm, 0, 0, 150, 230, 0, 400);
+		this.copy(beachMirror, this.getHeight() - 320, this.getWidth() - 320, 0, 320, 0, 320);
+	}
+	
 	/** Method to show large changes in color 
 	 * left to right
 	 * @param edgeDist the distance for finding edges
@@ -414,81 +514,8 @@ public class Picture extends SimplePicture
 		Pixel pixCurr = null;
 		Pixel pixMsg = null;
 		
-		//edgeDetection
-		Pixel pix1 = null;
-		Pixel pix2 = null;
-		Pixel pix3 = null;
-		for(int row = 0; row < msgPixels.length-1; row++) {
-			for(int col = 0; col < msgPixels[row].length-1; col++) {
-				pix1 = msgPixels[row][col];
-				pix2 = msgPixels[row][col+1];
-				pix3 = msgPixels[row+1][col];
-				if((pix1.colorDistance(pix2.getColor()) > 10) || (pix1.colorDistance(pix3.getColor()) >  10)) {
-					pix1.setColor(Color.BLACK);
-				}
-				else {
-					pix1.setColor(Color.WHITE);
-				}
-			}
-		}
-		//last col
-		for(int i = 0; i < msgPixels.length-1; i++) {
-			pix1 = msgPixels[i][msgPixels.length-1];
-			pix2 = msgPixels[i+1][msgPixels.length-1];
-			if(pix1.colorDistance(pix2.getColor()) > 10) {
-				pix1.setColor(Color.BLACK);
-			}
-			else {
-				pix1.setColor(Color.WHITE);
-			}
-		}
-		//last row
-		for(int i = 0; i < msgPixels[msgPixels.length-1].length-1; i++) {
-			pix1 = msgPixels[msgPixels.length-1][i];
-			pix2 = msgPixels[msgPixels.length-1][i+1];
-			if(pix1.colorDistance(pix2.getColor()) > 10) {
-				pix1.setColor(Color.BLACK);
-			}
-			else {
-				pix1.setColor(Color.WHITE);
-			}
-		}
-		
-		List<Integer> pastKeys = new ArrayList<Integer>();
-		List<Pixel> usedPixels = new ArrayList<Pixel>();
-		Pixel key = null;
-		int colorCheck = 0;
-		for(int row = 0; row < currPixels.length; row++) {
-			for(int col = 0; col < currPixels[row].length; col++) {
-				key = currPixels[row][col];
-				if(pastKeys.indexOf(encoderHelperUniqueKey(colorCheck, key)) != -1) {
-					if(col < currPixels[row].length-1) {
-						col = col + 1;
-						key = currPixels[row][col];
-					}
-					else {
-						if(row < currPixels.length-1) {
-							col = 0;
-							row = row + 1;
-							key = currPixels[row][col];
-						}
-						else {
-							row = 0;
-							col = 0;
-							key = currPixels[row][col];
-						}
-					}
-				}
-			}
-		}
 	}
-	
-	public int encoderHelperUniqueKey(int colorCheck, Pixel key) {
-		if(colorCheck == 0) return key.getBlue();
-		if(colorCheck == 1) return key.getGreen();
-		if(colorCheck == 2) return key.getRed();
-		return 0;
-	}
+
 	
 	/** Method to decode a picture from encoder
 	 * 
