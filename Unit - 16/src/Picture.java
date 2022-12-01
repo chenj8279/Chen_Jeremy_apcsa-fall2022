@@ -511,11 +511,71 @@ public class Picture extends SimplePicture
 	public void encoder(Picture messagePict) {
 		Pixel[][] msgPixels = messagePict.getPixels2D();
 		Pixel[][] currPixels = this.getPixels2D();
-		Pixel pixCurr = null;
-		Pixel pixMsg = null;
 		
+		int[] blacksInRow = new int[currPixels.length];
+		int[] blacksInCol = new int[currPixels[0].length];
+		
+		//blacks going across
+		for(int row = 0; row < msgPixels.length && row < blacksInRow.length; row++) {
+			int count = 0;
+			for(int col = 0; col < msgPixels[row].length && col < currPixels[row].length; col++) {
+				if(msgPixels[row][col].getColor() == Color.BLACK) count++;
+			}
+			blacksInRow[row] = count;
+			count = 0;
+		}
+		
+		//blacks going down
+		for(int col = 0; col < blacksInCol.length && col < msgPixels[0].length; col++) {
+			int count = 0;
+			for(int row = 0; row < msgPixels.length && row < currPixels.length; row++) {
+				if(msgPixels[row][col].getColor() == Color.BLACK) count++;
+			}
+			blacksInCol[col] = count;
+			count = 0;
+		}
+		
+		//values in pixels
+		//ones
+		//tens
+		//hundreds
+		
+		//blacks going across
+		for(int col = 0; col < 3; col++) {
+			for(int row = 0; row < blacksInRow.length && row < currPixels.length; row++) {
+				int g = currPixels[row][col].getGreen();
+				int n = (int) ((blacksInCol[col]/Math.pow(10,row))%10);
+				int d = g%10 - n;
+				
+				
+				if(d<5 || d>-5) currPixels[row][col].setGreen(g-d);
+				
+				else if(g%10>n) currPixels[row][col].setGreen(g+(10-d));
+				
+				else if(d>g) currPixels[row][col].setGreen(g+(10-d));
+				
+				else currPixels[row][col].setGreen(g-(10-Math.abs(d)));
+			}
+		}
+		
+		//blacks going down
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < blacksInCol.length && col < currPixels[row].length; col++) {
+				int b = currPixels[row][col].getBlue();
+				int n = (int) ((blacksInCol[col]/Math.pow(10,row))%10);
+				int d = b%10 - n;
+				
+				
+				if(d<5 || d>-5) currPixels[row][col].setBlue(b-d);
+				
+				else if(b%10>n) currPixels[row][col].setBlue(b+(10-d));
+				
+				else if(d>b) currPixels[row][col].setBlue(b+(10-d));
+				
+				else currPixels[row][col].setBlue(b-(10-Math.abs(d)));
+			}
+		}
 	}
-
 	
 	/** Method to decode a picture from encoder
 	 * 
@@ -524,7 +584,20 @@ public class Picture extends SimplePicture
 	public Picture decode() {
 		Pixel[][] pixels = this.getPixels2D();
 		Picture messagePicture = new Picture(this.getHeight(), this.getWidth());
+		Pixel[][] msgPixels = messagePicture.getPixels2D();
 		
+		int[] blacksInRow = new int[pixels.length];
+		int[] blacksInCol = new int[pixels[0].length];
+		
+		//blacks going across
+		for(int i = 0; i < blacksInRow.length; i++) {
+			
+		}
+		
+		//blacks going down
+		for(int i = 0; i < blacksInCol.length; i++) {
+			
+		}
 		
 		return messagePicture;
 	}
