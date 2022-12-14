@@ -17,8 +17,9 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	//private Alien alienOne;
-	//private Alien alienTwo;
+	private Alien alienOne;
+	private Alien alienTwo;
+	private Ammo ao;
 
 	//uncomment once you are ready for this part
 	//private AlienHorde horde;
@@ -36,6 +37,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//instantiate other instance variables
 		//Ship, Alien
 		ship = new Ship();
+		
+		//ao = new Ammo(0, 0, 1);
+		
+		alienOne = new Alien();
+		alienTwo = new Alien(300, 300, 50, 50, 1);
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -63,30 +69,70 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
 		
+		
+		
 		ship.draw(graphToBack);
+		if(ao != null) {
+			ao.move("UP");
+			ao.draw(graphToBack);
+		}
+		
+		if(alienOne != null) {
+			alienOne.draw(graphToBack);
+		}
+		
+		alienTwo.draw(graphToBack);
 
 		//add code to move Ship, Alien, etc.
 		if(keys[0] == true) {
 			ship.move("LEFT");
+			//alienOne.move("LEFT");
+			//alienTwo.move("LEFT");
 		}
 		if(keys[1] == true) {
 			ship.move("RIGHT");
+			//alienOne.move("RIGHT");
+			//alienTwo.move("RIGHT");
 		}
 		
 		if(keys[2] == true) {
 			ship.move("UP");
+			//alienOne.move("UP");
+			//alienTwo.move("UP");
 		}
 		
 		if(keys[3] == true) {
 			ship.move("DOWN");
+			//alienOne.move("DOWN");
+			//alienTwo.move("DOWN");
 		}
 		
 		if(keys[4] == true) {
-			//shots
+			ao = new Ammo(ship.getX() + (ship.getWidth()/2) - 5, ship.getY(), 5);
+			//ao.draw(graphToBack);
 		}
 
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 		
+		//collisions
+			//ammo.y + ammo.height >= alien.y
+			//AND
+			//ammo.y <= alien.y + alien.height
+		
+			//AND
+		
+			//ammo.x + ammo.width > alien.x
+			//AND
+			//ammo.x < alien.x + alien.width
+		if(ao != null && alienOne != null)
+		if((ao.getY() + ao.getHeight()) >= alienOne.getY() && 
+				ao.getY() <= (alienOne.getY() + alienOne.getHeight()) &&
+				(ao.getX() + ao.getWidth()) >= alienOne.getX() &&
+				ao.getX() <= (alienOne.getX() + alienOne.getWidth())) {
+			
+			alienOne = null;
+			ao = null;
+		}
 		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}

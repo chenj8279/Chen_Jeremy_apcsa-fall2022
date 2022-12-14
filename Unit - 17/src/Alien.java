@@ -15,11 +15,11 @@ public class Alien extends MovingThing
 	private Image image;
 
 	public Alien() {
-		this(0,0,30,30,0);
+		this(0,0,30,30, 1);
 	}
 
 	public Alien(int x, int y) {
-		this(x, y, 30, 30, 0);
+		this(x, y, 30, 30, 1);
 	}
 
 	public Alien(int x, int y, int s) {
@@ -44,11 +44,22 @@ public class Alien extends MovingThing
 	public int getSpeed() {return speed;}
 
 	public void move(String direction) {
-		//add code here
+		if(direction.equals("LEFT")) {
+			setX(getX() - getSpeed());
+		}
+		if(direction.equals("RIGHT")) {
+			setX(getX() + getSpeed());
+		}
+		if(direction.equals("UP")) {
+			setY(getY() - getSpeed());
+		}
+		if(direction.equals("DOWN")) {
+			setY(getY() + getSpeed());
+		}	
 	}
 
 	public void draw( Graphics window ) {
-		window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+		window.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
 	}
 
 	public String toString() {
