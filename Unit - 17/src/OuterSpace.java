@@ -65,13 +65,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		
 		//add code to move Ship, Alien, etc.
-		if(keys[0] == true) {ship.move("LEFT");}
-		if(keys[1] == true) {ship.move("RIGHT");}
-		if(keys[2] == true) {ship.move("UP");}
-		if(keys[3] == true) {ship.move("DOWN");}
-		
+		if(keys[0] == true) ship.move("LEFT");
+		if(keys[1] == true) ship.move("RIGHT");
+		if(keys[2] == true) ship.move("UP");
+		if(keys[3] == true) ship.move("DOWN");
 		if(keys[4] == true) {
 			shots.add(new Ammo(ship.getX() + (ship.getWidth()/2) - 5, ship.getY(), 5));
+			keys[4] = false;
 		}
 		horde.moveEmAll();
 		shots.moveEmAll();

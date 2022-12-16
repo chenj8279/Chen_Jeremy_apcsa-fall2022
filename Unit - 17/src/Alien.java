@@ -13,19 +13,17 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
-	private static int dWidth = 50;
-	private static int dHeight = 50;
 
 	public Alien() {
-		this(0, 0, dWidth, dHeight, 1);
+		this(0, 0, 50, 50, 1);
 	}
 
 	public Alien(int x, int y) {
-		this(x, y, dWidth, dHeight, 1);
+		this(x, y, 50, 50, 1);
 	}
 
 	public Alien(int x, int y, int s) {
-		this(x, y, dWidth, dHeight, s);
+		this(x, y, 50, 50, s);
 	}
 
 	public Alien(int x, int y, int w, int h, int s) {

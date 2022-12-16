@@ -25,17 +25,19 @@ public class AlienHorde
 
 	public void add(Alien al) {
 		al = new Alien();
+		int row = 0;
 		if(aliens.size() > 1) {
 			Alien before = aliens.get(aliens.size() - 1);
+			int s = before.getSpeed();
 			int x = before.getX() + before.getWidth() + spacing;
 			int y = before.getY();
 			if(x > (800 - before.getWidth())) {
 				x = 0;
-				y = before.getY() + before.getHeight() + spacing;
-			}
-			al = new Alien(x, y);
+				y = before.getY() - before.getHeight() - spacing;
+				s = -s;
+			}	
+			al = new Alien(x, y, s);
 		}
-
 		aliens.add(al);
 	}
 
